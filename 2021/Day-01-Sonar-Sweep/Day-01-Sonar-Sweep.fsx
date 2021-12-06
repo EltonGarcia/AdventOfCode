@@ -2,20 +2,27 @@ open System.IO
 
 let sonarSweeps = File.ReadAllLines "input.txt" |> Array.map int |> Array.toList
 
-let rec increaseMeasurementsCount prev list count = 
-    match list with
-    | [] -> count
-    | x::xs -> increaseMeasurementsCount x xs (count + (if prev < x then 1 else 0))
+let increaseMeasurementsCount list  =
+    list 
+        |> List.pairwise
+        |> List.filter (fun (a,b) -> a < b)
+        |> List.length
 
 
-increaseMeasurementsCount sonarSweeps.Head sonarSweeps.Tail 0
+//Fold version
+(*
+let increaseMeasurementsCount list  =
+    let folder (prev, count) curr = if prev < curr then (curr, count + 1) else (curr, count)
+    let x::xs = list
+    xs |> List.fold folder (x, 0) |> snd
+*)    
+
+increaseMeasurementsCount sonarSweeps
 
 
-let rec increaseMeasurementsInSlidingWindowCount a b c list count = 
-    match list with
-    | [] -> count
-    | x::xs -> increaseMeasurementsInSlidingWindowCount b c x xs (count + (if a + b + c < b + c + x then 1 else 0))
+let windowed = 
+    sonarSweeps 
+    |> List.windowed 3 
+    |> List.map (List.reduce (+))
 
-
-let x::y::z::xs = sonarSweeps
-increaseMeasurementsInSlidingWindowCount x y z xs 0
+increaseMeasurementsCount windowed
