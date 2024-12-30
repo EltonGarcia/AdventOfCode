@@ -17,7 +17,8 @@ for i in range(0, len(a)):
     v = b[i] - a[i]
     sum += v if v > 0 else v*-1
 
-print(sum)
+print("Part1:", sum)
+print("Expct:", 2580760)
 # Part 1 - result: 2580760
 
 ridx = 0
@@ -31,5 +32,7 @@ for left in a:
             ridx = i
             break
 
-print(sum2)
+print("")
+print("Part2:", sum2)
+print("Expct:", 25358365)
 # Part 2 - result: 25358365
