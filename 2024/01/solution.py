@@ -14,17 +14,17 @@ print("Expct:", 2580760)
 # Part 1 - result: 2580760
 
 ridx = 0
-sum2 = 0
+r2 = 0
 for left in a:
     for i in range(ridx, len(a)):
         right = b[i]
         if left == right:
-            sum2 += left
+            r2 += left
         elif left < right:
             ridx = i
             break
 
 print("")
-print("Part2:", sum2)
+print("Part2:", r2)
 print("Expct:", 25358365)
 # Part 2 - result: 25358365
