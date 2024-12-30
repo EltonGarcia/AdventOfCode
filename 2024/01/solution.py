@@ -7,12 +7,9 @@ l,r = zip(*[[int(x) for x in line.split()] for line in input()])
 a = sorted(l)
 b = sorted(r)
 
-sum = 0
-for i in range(0, len(a)):
-    v = b[i] - a[i]
-    sum += v if v > 0 else v*-1
+r1 = sum([abs(x - y) for x,y in zip(a, b)])
 
-print("Part1:", sum)
+print("Part1:", r1)
 print("Expct:", 2580760)
 # Part 1 - result: 2580760
 
