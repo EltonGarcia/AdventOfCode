@@ -2,15 +2,10 @@
 
 from fileinput import input
 
-a = []
-b = []
-for line in input():
-    arr = line.split('   ')
-    a.append(int(arr[0]))
-    b.append(int(arr[1]))
+l,r = zip(*[[int(x) for x in line.split()] for line in input()])
 
-a.sort()
-b.sort()
+a = sorted(l)
+b = sorted(r)
 
 sum = 0
 for i in range(0, len(a)):
