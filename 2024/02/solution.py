@@ -8,19 +8,20 @@ reports = [[int(x) for x in line.split()] for line in input()]
 r1 = 0
 for rp in reports:
     l = list(zip(rp, rp[1:]))
-    valid = True
     increasing = True
+    invalidIdx = -1
     for i in range(0, len(l)):
         x, y = l[i]
         inc = y-x > 0
         delta = abs(x-y)
         if i == 0:
             increasing = inc
-        else:
-            valid = valid and inc == increasing
+        elif inc != increasing:
+            invalidIdx = i
 
-        valid = valid and delta > 0 and delta < 4
-    if valid:
+        if delta <= 0 or delta >= 4:
+            invalidIdx = i
+    if invalidIdx == -1:
         r1 += 1
 
 print("Part1:", r1)
