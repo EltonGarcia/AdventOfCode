@@ -2,11 +2,12 @@
 
 from fileinput import input
 
-m = [[int(x) for x in line.split()] for line in input()]
-rps = [list(zip(x, x[1:])) for x in m]
+reports = [[int(x) for x in line.split()] for line in input()]
+#rps = [list(zip(x, x[1:])) for x in m]
 
 r1 = 0
-for l in rps:
+for rp in reports:
+    l = list(zip(rp, rp[1:]))
     valid = True
     increasing = True
     for i in range(0, len(l)):
@@ -23,3 +24,4 @@ for l in rps:
         r1 += 1
 
 print("Part1:", r1)
+print("Expected:", 432)
